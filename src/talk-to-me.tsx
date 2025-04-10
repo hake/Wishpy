@@ -48,14 +48,15 @@ export default function Command() {
           
           await showToast(Toast.Style.Animated, "Processing...", "Converting speech to text");
           
-          // Check if API key is available
-          if (!preferences.apiKey) {
-            throw new Error("OpenAI API key not set. Please set it in the extension preferences.");
+          // Check if API key is available - first check preferences, then environment variable
+          const apiKey = preferences.apiKey || process.env.OPENAI_API_KEY;
+          if (!apiKey) {
+            throw new Error("OpenAI API key not set. Please set it in the extension preferences or as an environment variable.");
           }
           
           // Initialize OpenAI client
           const openai = new OpenAI({
-            apiKey: preferences.apiKey,
+            apiKey,
           });
           
           // Send audio file to OpenAI Whisper API
