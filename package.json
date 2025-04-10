@@ -13,13 +13,24 @@
     {
       "name": "talk-to-me",
       "title": "Talk to me",
-      "description": "",
-      "mode": "view"
+      "description": "Convert speech to text and paste into active input",
+      "mode": "view",
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "OpenAI API Key",
+          "description": "Your OpenAI API key for Whisper speech-to-text",
+          "type": "password",
+          "required": true
+        }
+      ]
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.95.0",
-    "@raycast/utils": "^1.17.0"
+    "@raycast/utils": "^1.17.0",
+    "node-record-lpcm16": "^1.0.1",
+    "openai": "^4.93.0"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^2.0.4",
